@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from os import getcwd
 import os.path as osp
 import numpy as np
 import h5py
@@ -12,6 +13,11 @@ from download_dataset import check_dataset
 ang_interval = 10
 ang_skip = 2
 rs = np.random.RandomState(123)
+
+if 's2576597' in getcwd():
+    dataset_path = '/data/s2576597/mv2nv/datasets/shapenet'
+else:
+    dataset_path = './datasets/shapenet'
 
 
 class Dataset(object):
@@ -28,7 +34,7 @@ class Dataset(object):
             self._ids = self._ids[:max_examples]
 
         filename = 'data_{}.hdf5'.format(object_class)
-        file = osp.join('./datasets/shapenet', filename)
+        file = osp.join(dataset_path, filename)
 
         check_dataset(file, object_class)
         log.info("Reading %s ...", file)
@@ -112,11 +118,11 @@ def create_default_splits(n, object_class, is_train=True):
 
 def all_ids(object_class):
 
-    with open(osp.join('./datasets/shapenet', 'id_{}_train.txt'.format(object_class)), 'r') as fp:
+    with open(osp.join(dataset_path, 'id_{}_train.txt'.format(object_class)), 'r') as fp:
         ids_train = [s.strip() for s in fp.readlines() if s]
     rs.shuffle(ids_train)
 
-    with open(osp.join('./datasets/shapenet', 'id_{}_test.txt'.format(object_class)), 'r') as fp:
+    with open(osp.join(dataset_path, 'id_{}_test.txt'.format(object_class)), 'r') as fp:
         ids_test = [s.strip() for s in fp.readlines() if s]
     rs.shuffle(ids_test)
 

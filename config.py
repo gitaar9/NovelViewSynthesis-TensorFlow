@@ -14,7 +14,7 @@ def argparser(is_train=True):
     parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--prefix', type=str, default='default')
     parser.add_argument('--dataset', type=str, default='car', choices=[
-        'car', 'chair', 'kitti', 'synthia'])
+        'car', 'chair', 'kitti', 'synthia', 'ship'])
     parser.add_argument('--num_input', type=int, default=1,
                         help='this is only used for multiview novel view synthesis')
     parser.add_argument('--train_dir', type=str, default=None)
@@ -52,7 +52,7 @@ def argparser(is_train=True):
 
     config = parser.parse_args()
 
-    if config.dataset in ['car', 'chair']:
+    if config.dataset in ['car', 'chair', 'ship']:
         config.dataset_type = 'object'
         import datasets.object_loader as dataset
     elif config.dataset in ['kitti', 'synthia']:
