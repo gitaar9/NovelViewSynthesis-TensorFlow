@@ -17,7 +17,7 @@ rs = np.random.RandomState(123)
 if 's2576597' in getcwd():
     dataset_path = '/data/s2576597/mv2nv/datasets/shapenet'
 else:
-    dataset_path = './datasets/shapenet'
+    dataset_path = '../Multiview2Novelview/datasets/shapenet'
 
 
 class Dataset(object):

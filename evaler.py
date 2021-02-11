@@ -235,3 +235,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# python evaler.py --dataset ship --checkpoint /home/gitaar9/Desktop/tensorboard_test/train_dir/default-ship-bs_8_lr_0.0001-20210210-172429/model-290000 --loss True --write_summary True --summary_file log_ship.txt --plot_image True --output_dir img_ship --data_id_list ../Multiview2Novelview/testing_tuple_lists/id_ship_elevation_small.txt

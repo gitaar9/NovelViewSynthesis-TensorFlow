@@ -1,6 +1,7 @@
 import requests
 import os.path as osp
 from util import log
+from os import getcwd
 
 
 def download_file_from_google_drive(id, destination):
@@ -38,25 +39,29 @@ def download_file_from_google_drive(id, destination):
 
 
 def check_dataset(file_path, dataset_name):
-    return
     assert dataset_name in ['car', 'chair', 'kitti', 'synthia']
 
     if not osp.isfile(file_path):
         log.warn('The {} dataset is not found. '
                  'Downloading the dataset now...'.format(dataset_name))
 
+        if 's2576597' in getcwd():
+            train_dir_suffix = '/data/s2576597/mv2nv'
+        else:
+            train_dir_suffix = '.'
+
         if dataset_name == 'car':
             download_file_from_google_drive('1vrZURHH5irKrxPFuw6e9mZ3wh2RqzFC9',
-                                            './datasets/shapenet/data_car.hdf5')
+                                            '{}/datasets/shapenet/data_car.hdf5'.format(train_dir_suffix))
         elif dataset_name == 'chair':
             download_file_from_google_drive('1-IbmdJqi37JozGuDJ42IzOFG_ZNAksni',
-                                            './datasets/shapenet/data_chair.hdf5')
+                                            '{}/datasets/shapenet/data_chair.hdf5'.format(train_dir_suffix))
         elif dataset_name == 'kitti':
             download_file_from_google_drive('1LT3WoHxdCycu4jTxCGc1vGYpdRWridFH',
-                                            './datasets/kitti/data_kitti.hdf5')
+                                            '{}/datasets/kitti/data_kitti.hdf5'.format(train_dir_suffix))
         elif dataset_name == 'synthia':
             download_file_from_google_drive('1Fxv5r7oeG0PHgR42S5pHNvyl2pJN739H',
-                                            './datasets/synthia/data_synthia.hdf5')
+                                            '{}/datasets/synthia/data_synthia.hdf5'.format(train_dir_suffix))
         else:
             raise NotImplementedError
     else:

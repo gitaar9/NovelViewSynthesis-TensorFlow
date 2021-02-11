@@ -2,13 +2,15 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import time
 import os
-from six.moves import xrange
-import tensorflow as tf
+import time
+from os import getcwd
 
-from input_ops import create_input_ops
+import tensorflow as tf
+from six.moves import xrange
+
 from config import argparser
+from input_ops import create_input_ops
 from util import log
 
 
@@ -21,8 +23,13 @@ class Trainer(object):
             config.batch_size,
             config.learning_rate,
         )
+        if 's2576597' in getcwd():
+            train_dir_suffix = '/data/s2576597'
+        else:
+            train_dir_suffix = '.'
 
-        self.train_dir = './train_dir/%s-%s-%s-%s' % (
+        self.train_dir = '%s/train_dir/%s-%s-%s-%s' % (
+            train_dir_suffix,
             config.prefix,
             config.dataset,
             hyper_parameter_str,

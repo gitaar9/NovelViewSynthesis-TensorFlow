@@ -10,4 +10,4 @@ ml TensorFlow/1.10.1-fosscuda-2018a-Python-2.7.14
 
 source ../Multiview2Novelview/venv/bin/activate
 
-python -u trainer.py  --batch_size 8 --dataset ship --num_input 4 --train_dir /data/s2576597/train_dir --output_dir /data/s2576597/output_dir
+python -u trainer.py  --batch_size 8 --dataset chair --num_input 4 --output_dir /data/s2576597/output_dir
